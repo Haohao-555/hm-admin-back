@@ -15,13 +15,13 @@ router.post('/login', async (ctx, next) => {
         // TODO 将账号信息（id）保存到 session 中
         ctx.session.userInfo = data
         ctx.body = {
-            errno: 0,
+            errorno: 0,
             message: '登录成功'
         }
         return
     }
     ctx.body = {
-        errno: 4001,
+        errorno: 4001,
         message: '账号或密码错误'
     }
 })
@@ -31,7 +31,7 @@ router.post('/logout', loginCheck, async (ctx, next) => {
     // TODO: 删除 session 会话
     delete ctx.session.userInfo
     ctx.body = {
-        errno: 0,
+        errorno: 0,
         message: '退出登录成功'
     }
 })
@@ -42,7 +42,7 @@ router.post('/register', loginCheck, async (ctx, next) => {
     const result = await searchUser({ where: { account } });
     if (result.account == account) {
         ctx.body = {
-            errno: 4002,
+            errorno: 4002,
             message: '账号必须唯一'
         }
         return
@@ -83,10 +83,10 @@ router.post('/register', loginCheck, async (ctx, next) => {
 // *查看用户列表
 router.get('/list', loginCheck, async (ctx, next) => {
     const { pageSize = 5, pageIndex = 0, where = {} } = ctx.query
-    const userList = await getUserList({ 
+    const userList = await getUserList({
         pageSize: parseInt(pageSize),
         pageIndex: parseInt(pageIndex),
-        where 
+        where
     })
     ctx.body = {
         errorno: 0,
@@ -117,7 +117,7 @@ router.post('/updatePrivateInfo', loginCheck, async (ctx, next) => {
     const result = await changeUserInfo({ whereUserList })
     if (!result.flag) {
         ctx.body = {
-            errno: 4004,
+            errorno: 4004,
             message: '更新用户信息失败'
         }
         return
@@ -128,7 +128,7 @@ router.post('/updatePrivateInfo', loginCheck, async (ctx, next) => {
     ctx.session.userInfo = newUserInfo
 
     ctx.body = {
-        errno: 0,
+        errorno: 0,
         message: '更新用户信息成功',
         data: newUserInfo
     }
@@ -162,7 +162,7 @@ router.post('/changeAuth', loginCheck, async (ctx, next) => {
 
                 if (!result.flag) {
                     ctx.body = {
-                        errno: 5002,
+                        errorno: 5002,
                         message: '修改用户权限失败',
                     }
                     return

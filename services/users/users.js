@@ -19,9 +19,19 @@ const findUser = async ({ where = {} } = {}) => {
       'avatar',
       'intriduce'
     ],
+    include: [
+      {
+        model: Auth,
+        attributes: ['permission']
+      }
+    ],
     where
   })
-  return formatUsers(result ? result.dataValues : {})
+  if (!result) return {}
+
+  let userInfo = formatUsers(result.dataValues)
+  userInfo.auth = userInfo.auth.dataValues.permission.split("&")
+  return userInfo
 }
 
 // 查找指定页数及页大小的用户
