@@ -2,7 +2,7 @@ const { MYSQL_CONF } = require('../config/db')
 const mysql = require('mysql')
 
 //创建连接
-const con = mysql.createConnection(Object.assign(MYSQL_CONF, {useConnectionPooling: true}))
+const con = mysql.createConnection(MYSQL_CONF)
 
 //开始连接
 con.connect()

@@ -2,7 +2,7 @@ const router = require('koa-router')()
 const loginCheck = require('../middleware/loginCheck')
 const { getArticlesList, createArticles, getArticlesDetail, updateArticles } = require('../controller/articles/index')
 // 文章接口
-router.prefix('/adminapi/article');
+router.prefix('/adminApi/article');
 
 
 // 获取文章列表
