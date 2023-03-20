@@ -33,13 +33,47 @@ const initAuthData = async () => {
 
 const Random = Mock.Random
 const initUsersData = async () => {
-  for (let i = 0; i < 20; i++) {
+  // 用户
+  const user = {
+    account: 'user',
+    password: '123456',
+    nickName: '测' + Random.clast(),
+    authId: '0',
+    gender: Random.string('123', 1, 1),
+    age: Random.integer(18, 30),
+    idcard: Random.id(),
+    city: Random.city(true),
+    email: Random.email(),
+    state: Random.boolean(9, 2, true),
+    avatar: Random.image('60x60', '#de4307', '#ffffff', '测'),
+    intriduce: Random.csentence(12, 18)
+  }
+
+  // 管理员
+  const admin = {
+    account: 'admin',
+    password: '123456',
+    nickName: '测' + Random.clast(),
+    authId: '1',
+    gender: Random.string('123', 1, 1),
+    age: Random.integer(18, 30),
+    idcard: Random.id(),
+    city: Random.city(true),
+    email: Random.email(),
+    state: Random.boolean(9, 2, true),
+    avatar: Random.image('60x60', '#de4307', '#ffffff', '测'),
+    intriduce: Random.csentence(12, 18)
+  }
+  User.create(user)
+  User.create(admin)
+
+  for (let i = 0; i < 100; i++) {
     const firstName = Random.cfirst()
-    const user = {
+    const obj = {
       account: Random.string('0123456789', 3, 5),
       password: Random.string('0123456789', 3, 5),
       nickName: firstName + Random.clast(),
-      authId: Random.string('012', 1, 1),
+      authId: Random.string('01', 1, 1),
       gender: Random.string('123', 1, 1),
       age: Random.integer(18, 30),
       idcard: Random.id(),
@@ -49,7 +83,7 @@ const initUsersData = async () => {
       avatar: Random.image('60x60', '#de4307', '#ffffff', firstName),
       intriduce: Random.csentence(12, 18)
     }
-    await User.create(user)
+    await User.create(obj)
   }
 }
 
