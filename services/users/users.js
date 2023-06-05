@@ -9,6 +9,7 @@ const findUser = async ({ where = {} } = {}) => {
       'id',
       'account',
       'nickName',
+      'password',
       'authId',
       'gender',
       'age',
@@ -42,6 +43,20 @@ const findAllUser = async ({ pageIndex = 0, pageSize = 5, where = {} } = {}) => 
     offset: pageSize * pageIndex, //跳过多少条
     order: [
       ['id', 'asc']
+    ],
+    attributes: [
+      'id',
+      'account',
+      'nickName',
+      'authId',
+      'gender',
+      'age',
+      'idcard',
+      'city',
+      'email',
+      'state',
+      'avatar',
+      'intriduce'
     ],
     // 副表
     include: [
@@ -112,9 +127,3 @@ module.exports = {
   deleteUser,
   updateUser
 }
-
-
-// (async () => {
-//   const res = await findAllUser()
-//   console.log(res.userList)
-// })()
