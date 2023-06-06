@@ -18,7 +18,9 @@ const findUser = async ({ where = {} } = {}) => {
       'email',
       'state',
       'avatar',
-      'intriduce'
+      'intriduce',
+      'createdAt',
+      'updatedAt'
     ],
     include: [
       {
@@ -56,7 +58,9 @@ const findAllUser = async ({ pageIndex = 0, pageSize = 5, where = {} } = {}) => 
       'email',
       'state',
       'avatar',
-      'intriduce'
+      'intriduce',
+      'createdAt',
+      'updatedAt'
     ],
     // 副表
     include: [

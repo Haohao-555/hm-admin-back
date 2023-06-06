@@ -10,6 +10,7 @@ const redisStore = require('koa-redis')
 const {REDIS_CONF} = require('./config/db')
 
 const users = require('./routes/users')
+const admin = require('./routes/admin')
 
 // error handler
 onerror(app)
@@ -49,6 +50,7 @@ app.use(session({
 
 // routes
 app.use(users.routes(), users.allowedMethods())
+app.use(admin.routes(), admin.allowedMethods())
 
 
 // error-handling

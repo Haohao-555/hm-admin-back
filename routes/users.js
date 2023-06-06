@@ -22,6 +22,7 @@ router.post('/login', async (ctx, next) => {
             errorno: 4007,
             message: '账号已被禁用'
         }
+        return
     }
     ctx.body = {
         errorno: 4001,
