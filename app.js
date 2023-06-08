@@ -32,21 +32,21 @@ app.use(async (ctx, next) => {
 })
 
 //session 与  redis
-app.keys = ['dfhQWE_123#ewr']
-app.use(session({
-  key: 'hmAdmin.sid', //cookie name 默认是 `koa.sid`
-  prefix: 'hmAdmin:sess:', // redis key 的前缀，默认是 `koa:sess:`
-  //配置cookie
-  cookie:{
-    path:"/",
-    httpOnly:true,
-    maxAge:24 * 60 * 60 * 1000 // 1 day
-  },
-  //配置redis
-  store: redisStore({
-    all:`${REDIS_CONF.host}:${REDIS_CONF.port}`
-  })
-}))
+// app.keys = ['dfhQWE_123#ewr']
+// app.use(session({
+//   key: 'hmAdmin.sid', //cookie name 默认是 `koa.sid`
+//   prefix: 'hmAdmin:sess:', // redis key 的前缀，默认是 `koa:sess:`
+//   //配置cookie
+//   cookie:{
+//     path:"/",
+//     httpOnly:true,
+//     maxAge:24 * 60 * 60 * 1000 // 1 day
+//   },
+//   //配置redis
+//   store: redisStore({
+//     all:`${REDIS_CONF.host}:${REDIS_CONF.port}`
+//   })
+// }))
 
 // routes
 app.use(users.routes(), users.allowedMethods())

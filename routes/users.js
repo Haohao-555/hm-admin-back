@@ -1,5 +1,8 @@
 const router = require('koa-router')()
 const loginCheck = require('../middleware/loginCheck')
+const { koaBody } = require('koa-body')
+const path = require('path')
+const fs = require("fs")
 const { searchUser, changeUserInfo, getUserInfo, changePw } = require('../controller/users/index')
 // 管理员和普通用户共有的接口
 router.prefix('/adminApi/user')
@@ -166,6 +169,19 @@ router.post('/isLogin', async (ctx, next) => {
 })
 
 // *上传头像
-router.post('/uploadava', async(ctx, next) => {})
+router.post("/upload", loginCheck, koaBody({
+    multipart: true,  // 支持表单上传
+    formidable: {
+        uploadDir: path.join(path.resolve(__dirname, '../../'), './imgHome/avatar'),
+        keepExtensions: true, // 保持文件的后缀
+        maxFileSize: 10 * 1024 * 1024// 文件上传大小限制
+    }
+}), async (ctx) => {
+    // TODO 更新到数据库中
+    ctx.body = {
+        errorno: 0,
+        file: ctx.request.files
+    }
+});
 
 module.exports = router

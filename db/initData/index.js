@@ -6,6 +6,7 @@ const {
   USER,
   USER_PERMISSION
 } = require('../../config/auth')
+const { AVATAR_ADDRESS } = require('../../constant/index')
 
 
 const initAuthData = async () => {
@@ -37,7 +38,7 @@ const initUsersData = async () => {
     city: Random.city(true),
     email: Random.email(),
     state: Random.boolean(9, 2, true),
-    avatar: Random.image('60x60', '#000000', '#ffffff', 'Z'),
+    avatar: `${AVATAR_ADDRESS}ava (${Random.integer(1, 10)}).jpg`,
     intriduce: '用尽一切奔向你'
   }
 
@@ -53,7 +54,7 @@ const initUsersData = async () => {
     city: Random.city(true),
     email: Random.email(),
     state: Random.boolean(9, 2, true),
-    avatar: Random.image('120x120', '#000000', '#ffffff', 'G'),
+    avatar: `${AVATAR_ADDRESS}ava (${Random.integer(1, 10)}).jpg`,
     intriduce: '心之所向，才能持之以恒'
   }
   User.create(user)
@@ -72,7 +73,7 @@ const initUsersData = async () => {
       city: Random.city(true),
       email: Random.email(),
       state: Random.boolean(9, 2, true),
-      avatar: Random.image('120x120', '#000000', '#ffffff', authId === '0' ? 'Z' : 'G'),
+      avatar: `${AVATAR_ADDRESS}ava (${Random.integer(1, 10)}).jpg`,
       intriduce: Random.csentence(12, 18)
     }
     await User.create(obj)
